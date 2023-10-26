@@ -6,22 +6,19 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
-    float delta;
-    Vector3 Curr_velocity;
     private float speed = 15f;
     private float jump_speed = 30f;
     private bool IsGrounded = true;
-    Vector3 moveDirection;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Curr_velocity = Vector3.zero;
-        Physics.gravity = new Vector3 (0,-100,0);
+        Physics.gravity = new Vector3 (0,-100,0); //TODO: this should be in another script - something like "UniverseSettings.cs"
     }
 
     void Update()
     {
+        //simple Jumping mechanic
         if (Input.GetButtonDown("Jump") && IsGrounded)
         {
             rb.AddForce(new Vector3(0.0f, jump_speed, 0.0f), ForceMode.Impulse);
@@ -30,24 +27,13 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        delta = Time.deltaTime;
+        //pressing buttons sets the velocity of the player directly.
         float xDirection = Input.GetAxis("Horizontal")*speed;
         float zDirection = Input.GetAxis("Vertical")*speed;
-
-        rb.velocity = new Vector3(xDirection,rb.velocity.y,zDirection);
-
-
-        //moveDirection = new Vector3(xDirection, 0.0f, zDirection) * speed * delta;
-        //rb.MovePosition(rb.position + moveDirection);
-        //rb.AddForce(moveDirection, ForceMode.VelocityChange);
+        rb.velocity = new Vector3(xDirection,rb.velocity.y,zDirection); 
     }
 
-    /*private void FixedUpdate()
-    {
-        transform.position += moveDirection;
-    }*/
-
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Ground") // update the collision with ground bool
         {

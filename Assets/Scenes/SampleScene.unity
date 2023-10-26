@@ -1099,10 +1099,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 5
-  jump_speed: 10
-  IsGrounded: 1
-  testbool: 1
 --- !u!54 &1564961436
 Rigidbody:
   m_ObjectHideFlags: 0

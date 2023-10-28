@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PickupWeapon : MonoBehaviour
 {
+    private Ray PickupSystemRay;
     public bool PlayerHasWepaon;
 
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class PickupWeapon : MonoBehaviour
     void _pickup() 
     {
         //TODO: pickup the wepaon
+        PickupSystemRay = new Ray();
         PlayerHasWepaon = true;
     }
 

@@ -22,14 +22,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded)
         {
             rb.AddForce(new Vector3(0.0f, jump_speed, 0.0f), ForceMode.Impulse);
-            IsGrounded = false;
         }
     }
     void FixedUpdate()
     {
         //pressing buttons sets the velocity of the player directly.
-        float xDirection = Input.GetAxis("Horizontal")*speed;
-        float zDirection = Input.GetAxis("Vertical")*speed;
+        float xDirection = Input.GetAxis("Horizontal") * speed;
+        float zDirection = Input.GetAxis("Vertical") * speed;
         rb.velocity = new Vector3(xDirection,rb.velocity.y,zDirection); 
     }
 
@@ -38,6 +37,13 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.name == "Ground") // update the collision with ground bool
         {
             IsGrounded = true;
+        }
+    }
+    void OnCollisionExit(Collision collision) 
+    {
+        if(collision.gameObject.name == "Ground") // update the collision with ground bool
+        {
+            IsGrounded = false; 
         }
     }
 }

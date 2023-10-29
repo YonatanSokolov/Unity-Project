@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(new Vector3(0.0f, jump_speed, 0.0f), ForceMode.Impulse);
         }
+        if (Input.GetButtonDown("Jump")) //just checking how Debug.Log works
+        {
+            Debug.Log("Jump is pressed!");
+        }
     }
     void FixedUpdate()
     {

@@ -9,7 +9,6 @@ public class CameraFollowPlayer : MonoBehaviour
     [SerializeField] private Transform Target;
     [SerializeField] private float Smoothness;
     private Vector3 _currvelocity = Vector3.zero;
-    private float delta;
     // Start is called before the first frame update
     void Awake()
     {
